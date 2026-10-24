@@ -37,8 +37,7 @@ void MkWnd(const char *title, int width,
 		exit(1);
 	}
 
-	/* TODO: Fix this, it doesn't compile */
-	/*SDL_WM_SetCaption(title, void);*/
+	SDL_WM_SetCaption(title, title);
 }
 
 /* Rewritten from 

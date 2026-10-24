@@ -21,7 +21,7 @@ ifeq ($(DISPLAY), sdl)
 	CFLAGS += $(shell sdl-config --cflags) -D_SDL
 endif
 
-CFLAGS += -Wall -Wextra -pedantic -ansi -Ofast
+CFLAGS += -Iinclude -Wall -Wextra -pedantic -ansi -Ofast
 
 ifeq ($(DISPLAY), sdl)
 	LDFLAGS += $(shell sdl-config --libs)
@@ -32,16 +32,16 @@ LDFLAGS += -flto
 all: archive
 
 graphics:	
-	$(CC) $(CFLAGS) -c graphics.c
+	$(CC) $(CFLAGS) -c src/graphics.c -o build/graphics.o
 
 3d:
-	$(CC) $(CFLAGS) -c 3d.c
+	$(CC) $(CFLAGS) -c src/3d.c -o build/3d.o
 
 archive: graphics 3d
-	$(AR) rcs libansi3d.a 3d.o graphics.o
+	$(AR) rcs build/libansi3d.a build/3d.o build/graphics.o
 
 example: archive
-	$(CC) $(CFLAGS) example.c -o example -L. -lansi3d $(LDFLAGS)
+	$(CC) $(CFLAGS) examples/basic.c -o build/basic -Lbuild -lansi3d $(LDFLAGS)
 
 clean:
-	rm -fv *.o *.a *.exe
+	rm -fv build/*.o build/*.a build/*.exe
