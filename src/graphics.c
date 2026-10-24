@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define ushort unsigned short
+typedef unsigned short ushort;
 
 typedef struct {
 	ushort r,g,b;

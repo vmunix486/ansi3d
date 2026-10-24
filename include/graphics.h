@@ -1,7 +1,7 @@
 #ifndef _GRAPHICS_H_
 #define _GRAPHICS_H_
 
-#define ushort unsigned short
+typedef unsigned short ushort;
 
 typedef struct {
 	ushort r,g,b;
